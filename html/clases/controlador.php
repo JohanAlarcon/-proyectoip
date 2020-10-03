@@ -121,31 +121,130 @@ class Status
     protected function createTable($arrayInsert)
     {
         
-       /* ================ ESTRUCTURA EJEMPLO ================ */
-       
-       /*  <thead>
-            <tr>
+        #Array inicial
+        
+        /* [0] => Array
+        (
+            [DEPENDENCIA] => 2
+            [NUMERODEQUINCENA] => 1
+            [TIPOMOVIMIENTO] => 20
+            [FECHA DE MOVIMIENTO] => 44177
+            [NUMEROCONTROL] => RAQUEL
+            [NOMBRE] => VELAZQUEZ
+            [PRMIERAPELLIDO] => BARAJAS
+            [SEGUNDOAPELLIDO] => VEBR7712207Z6
+            .
+            .
+            .
+            .
+        */
             
-                <th style='font-weight:bold'>Titulo1</th>
-                <th style='font-weight:bold>Titulo2</th>
+        $titulos         = '';       
+        
+        foreach($arrayInsert as $contenido){
+            
+            foreach($contenido as $llave => $valor){
                 
-            </tr>
-        </thead>
+               $titulos = $titulos == '' ? $llave : $titulos.','.$llave; //Se concatenan los titulo con ,
+                
+            }
+            
+          break;
+           
+        }
+        
+        $array_titulos   = explode(',',$titulos); //Se convierten los titulos en array
+        
+        $j = 0;
+        
+                                       
+            foreach($arrayInsert as $contenido){
+                
+                foreach($contenido as $llave => $valor){
+                    
+                    for ($i=0; $i < count($array_titulos); $i++) {   //se recorre el array de los titulos para asiganarle el valor correspondiente al titulo
+                        
+                        if($array_titulos[$i] == $llave){
+                            
+                            if($j == 0)  $array_contenido[$llave] = array(); //En la primera iteracion se inicializa un array con la posicion de los titulos y el valor correspondiente
+                        
+                            array_push($array_contenido[$llave],$valor);
+                            
+                        }
+                    
+                    }
+                
+                }     
+                
+              $j++;                                                                                     
+            
+            }
+          
+          
+        //Se construye la tabla con el nuevo array re-estructurado
+        
+        /* 
+        [DEPENDENCIA] => Array
+            (
+                [0] => 2
+                [1] => 1
+                [2] => 1
+            )
 
-        <tbody>
-            <tr>
-                
-                <td>Mark</td>
-                <td>Otto</td>
+        [NUMERODEQUINCENA] => Array
+            (
+                [0] => 1
+                [1] => 1
+                [2] => 1
+            )
+
+        [TIPOMOVIMIENTO] => Array
+            (
+                [0] => 20
+                [1] => 2
+                [2] => 2
+            ) 
+            .
+            .
+            .
+            .
+            */
+        
+        $tabla           = '';
+        
+        foreach($array_contenido as $titulo  => $valor){ //Recorre los titulos
+             
+             $tabla  .= "<tr>";
             
-            </tr>
-            <tr>
-                
-                <td>Jacob</td>
-                <td>Thornton</td>
+             $tabla  .= "<td style='font-weight:bold'>".$titulo."</td>";
             
-            </tr>
-        </tbody> */              
+             foreach($valor as $llave){ //Recorre los valores de los titulos
+                     
+                if($titulo == 'FECHA DE MOVIMIENTO'){
+                    
+                    $fecha = ($llave - 25569) * 86400;
+    
+                    $fecha = gmdate("Y-m-d", $fecha);
+                    
+                    $tabla  .= "<td>".$fecha."</td>";
+                    
+                }else{
+                    
+                $tabla  .= "<td>".$llave."</td>";
+                    
+                }
+                 
+             }
+             
+             $tabla .= "</tr>";
+        }
+    
+        
+        return $tabla;
+       
+    }
+         
+    /* protected function createTable($arrayInsert){
    
         $tabla           = '';
         $titulo_tabla    = '<thead><tr>';
@@ -188,7 +287,7 @@ class Status
         
         return $tabla;
        
-    }
+    } */
     
     private function moveUploadedFile($FILES, $directorio_subidas = '../../archivos/varios/', $nombre)
     {

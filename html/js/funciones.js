@@ -45,6 +45,7 @@ $("#archivo_subir").on('change', function(e) {
                 $("#table").html('');
                 
                 $("#visual").html('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Algo salió mal!</strong> Contacta con el administrador<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                
                 console.log(e);
             }        
         }
@@ -53,92 +54,3 @@ $("#archivo_subir").on('change', function(e) {
 
 
 
-/* function validacionPrevia(){
-    // Si hay que validar un dato antes de subirlo 
-    if(1){
-      return true;
-    }else{
-       alertJquery('Error de validacion','Error');
-       return false;
-     }
-    
-}
-
-
-function finalizaCarga(response){	  
-    if($.trim(response) == 'NA'){
-      alertJquery('No se guardo');
-    }else{          
-       alertJquery(response);           
-    } 
-} */
-
-
-/* function uploadFileAutomatically(objFile,parameters,beforesend,onsuccess){   
-    //si se debe ejecutar alguna funcion antes de enviar el formulario 
-    if(beforesend){
-        if(!beforesend()){           
-            return false;
-        }
-    }
-    
-    var formulario   = objFile.form;
-    var methodForm   = formulario.method;
-    
-    //Se asigna una accion que se validara en el controlador
-    
-    if(formulario.ACTIONCONTROLER){
-        var actioncontroler = formulario.ACTIONCONTROLER.value;  
-        formulario.ACTIONCONTROLER.value = 'uploadFileAutomatically';
-    }else{ 
-        var patt       = /[?]/g;
-        var actionForm = formulario.action;
-        if(!patt.test(actionForm)){
-            formulario.action = actionForm+'?ACTIONCONTROLER=uploadFileAutomatically';      
-        }
-        if(parameters != ''){
-            var parametersObj = parameters.split(",");
-            
-            for(param in parametersObj){
-                formulario.action += '&'+parametersObj[param]+'='+document.getElementById(parametersObj[param]).value;
-            }
-        }        
-    }    
-    
-    formulario.method  = 'POST';
-    formulario.enctype = 'multipart/form-data';
-    
-    var targetForm = formulario.target;
-    
-    if(!document.getElementById('frameUploadFileAutomatically')){
-        
-        var frameUploadFileAutomatically        = document.createElement("iframe");
-        frameUploadFileAutomatically.name   = 'frameUploadFileAutomatically';
-        frameUploadFileAutomatically.id     = 'frameUploadFileAutomatically';
-        frameUploadFileAutomatically.style.width  = '0px';
-        frameUploadFileAutomatically.style.height = '0px';
-        
-        document.body.appendChild(frameUploadFileAutomatically);
-        
-    }
-    
-    formulario.target = 'frameUploadFileAutomatically'; 
-   
-    
-    formulario.submit();
-    frameUploadFileAutomatically.onload = function(){
-        console.log("llegamios a la funcion"+frameUploadFileAutomatically.innerHTML); 
-
-    }
-
-    
-    formulario.method = methodForm;
-    formulario.action = actionForm;
-    formulario.target = targetForm;
-    $(formulario).removeAttr("enctype");
-    
-} */
-
-/* function obtenerRespuesta(){
- console.log("llegamios a la funcion");
-} */

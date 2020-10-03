@@ -178,6 +178,8 @@
                     <td  width="70%" class="table-responsive">
                 
                         <table class="table table-striped" id="table">
+                        
+                        
                             
                         </table>
           
