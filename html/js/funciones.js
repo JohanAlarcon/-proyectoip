@@ -79,7 +79,9 @@ $("#archivo_subir").on('change', function(e) {
                 $(".imgExcel").attr("src","../assets/images/icon-excel.png");
                 $(".txtExcel").attr("style","color: #8d97ad").attr("href", "#");
                 
-                $("#visual").html('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Algo salió mal!</strong> Contacta con el administrador<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                $("#visual_errores").html('<div class="alert alert-warning alert-dismissible fade show" role="alert"><strong>Algo salió mal!</strong> Contacta con el administrador<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
+                
+                $("#visual_success").html('');
                 
                 console.log(e);
             }        
