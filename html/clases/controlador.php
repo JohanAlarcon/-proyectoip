@@ -32,13 +32,8 @@ class Status
         $dir_file       = $this -> moveUploadedFile($archivoPOST, $rutaAlmacenar, "archivoExcel");
         $arrayInsert    = $this -> getArrayInsert($dir_file); 
         $i              = 2;
-        $tabla          = $this -> createTable($arrayInsert);
-       
-       /* Preguntas :
-       
-        * Campo relacionado con su tipo de dato
-       
-        */
+        
+        $celda          = array();
         
         foreach($arrayInsert as $contenido){
             
@@ -48,18 +43,182 @@ class Status
                     if(trim($valor)==''){
                         $errores .= " <br><strong>Fila ".$i."</strong> : La columna ".$llave." No puede ser vacia!!";
                         $error = 1;
+                        
+                        switch ($llave) {
+                           
+                            case 'DEPENDENCIA':
+                                $posicion = 'A'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'NUMERODEQUINCENA':
+                                $posicion = 'B'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'TIPOMOVIMIENTO':
+                                $posicion = 'C'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'FECHA DE MOVIMIENTO':
+                                $posicion = 'D'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'NUMEROCONTROL':
+                                $posicion = 'E'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'NOMBRE':
+                               $posicion = 'F'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'PRMIERAPELLIDO':
+                                $posicion = 'G'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                 
+                            case 'SEGUNDOAPELLIDO':
+                                $posicion = 'H'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'CURP':
+                                $posicion = 'I'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'RFC':
+                                $posicion = 'J'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'TIPOTRABAJADOR':
+                                $posicion = 'K'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                           
+                            case 'PUESTO':
+                                $posicion = 'L'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'TIPODEGENERACION':
+                                $posicion = 'M'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'SALARIOINTEGRADO':
+                                $posicion = 'N'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'SUELDONETO':
+                                $posicion = 'O'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'SALARIOCOTIZACION':
+                                $posicion = 'P'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'IMPORTE DE BONOS EXTRAORDINARIOS':
+                                $posicion = 'Q'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'IMPORTE DE AGUINALDO':
+                                $posicion = 'R'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                            
+                            case 'APORTACIONSALARIOCOTIZACION':
+                                $posicion = 'S'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'APORTACIONPENSIONESAGUINALDO':
+                                $posicion = 'T'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'APORTACIONPENSIONESEXTRAORDINARIO':
+                                $posicion = 'U'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                            
+                            case 'DIASAPORTASIONESEXTRAORDINARIO':
+                                $posicion = 'V'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'APORTACIONENTIDAD':
+                                $posicion = 'W'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'IMPORTECP':
+                                $posicion = 'X'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                            
+                            case 'IMPORTEPH':
+                                $posicion = 'Y'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'IMPORTESH':
+                                $posicion = 'Z'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'IMPORTEPHESP':
+                                $posicion = 'AA'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'IMPORTESHESP':
+                                $posicion = 'AB'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'NoCREDITOAVAL':
+                                $posicion = 'AC'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                                
+                            case 'IMPORTEAVAL':
+                                $posicion = 'AD'.$i;
+                                array_push($celda,$posicion);
+                                break;
+                            
+                           
+                        }
+                        
                     }
                     
                     //Regla 3: Que el campo RFC contenga 13 digitos
                     if($llave=='RFC' && strlen($valor)!=13){
                         $errores .= "<br><strong>Fila ".$i."</strong> : La columna ".$llave." Debe contener 13 digitos!! ";
                         $error = 1;
+                        
+                        $posicion = 'J'.$i;
+                        
+                        array_push($celda,$posicion);
                     }
                     
                    //Regla 4: Que el campo CURP contenga 13 digitos
-                    if($llave=='CURP' && strlen($valor)!=18){
+                    if($llave =='CURP' && strlen($valor)!=18){
                         $errores .= "<br><strong>Fila ".$i."</strong> : La columna ".$llave." Debe contener 18 digitos!! ";
                         $error = 1;
+                        
+                        $posicion = 'I'.$i;
+                        
+                        array_push($celda,$posicion);
                     }
                     
                     //Regla 5: Que el campo TIPO DE MOVIMIENTO  este entre los valores del 1 al 20
@@ -67,30 +226,50 @@ class Status
                     if($llave=='TIPOMOVIMIENTO' && ($valor<1 || $valor>20)){
                         $errores .= "<br><strong>Fila ".$i."</strong> : La columna ".$llave." Debe tener un numero entre 1 y 20!!";
                         $error = 1;
+                        
+                        $posicion = 'C'.$i;
+                        
+                        array_push($celda,$posicion);
                     }
                     
                     //Regla 6: Que el campo TIPO TRABAJO  este entre los valores del 1 al 3
                     if($llave=='TIPOTRABAJADOR' && ($valor<1 || $valor>3)){
                         $errores .= "<br><strong>Fila ".$i."</strong> : La columna ".$llave." Debe tener un numero entre 1 y 3!!";
                         $error = 1;
+                        
+                        $posicion = 'K'.$i;
+                        
+                        array_push($celda,$posicion);
                     }
                     
                     //Regla 7: Que el campo TIPO GENERACION  este entre los valores del 1 al 2
                     if($llave=='TIPODEGENERACION' && ($valor<1 || $valor>2)){
                         $errores .= "<br><strong>Fila ".$i."</strong> : La columna ".$llave." Debe tener un numero entre 1 y 2!!";
                         $error = 1;
+                        
+                        $posicion = 'M'.$i;
+                        
+                        array_push($celda,$posicion);
                     }
                     
                      //Regla 8: Que el campo DEPENDENCIA sea igual a alguno de los valores de la entidad
                     if($llave=='DEPENDENCIA' && !in_array($valor, $dependencias)){
                         $errores .= "<br><strong>Fila ".$i."</strong>: No se encontro ninguna dependencia con el codigo ".$valor."!! ";
                         $error = 1;
+                        
+                        $posicion = 'A'.$i;
+                        
+                        array_push($celda,$posicion);
                     }
                     
                      //Regla 9: Que el campo QUINCENA  sea igual a la quincena seleccionada del 1 al 24
                     if($llave=='NUMERODEQUINCENA' && ($valor<1 || $valor>24)){
                         $errores .= "<br><strong>Fila ".$i."</strong>: El numero de quincena ".$valor." no es válido!!";
                         $error = 1;
+                        
+                        $posicion = 'B'.$i;
+                        
+                        array_push($celda,$posicion);
                     }
                     
                 }
@@ -100,11 +279,45 @@ class Status
         }
            
         if($error>0){
-            $respuesta = array('error'=>1,'error_texto'=>$errores,'texto'=>'');
-            echo json_encode($respuesta);
-        }else{
+            
+            $respuesta = array('error'=>1,'error_texto'=>$errores);
            
-            $respuesta = array('error'=>0,'error_texto'=>$errores,'tabla'=>$tabla);
+            require_once("PHPExcel/PHPExcel/IOFactory.php");
+            
+            // Creamos un objeto PHPExcel
+            $objPHPExcel = new PHPExcel();
+            $objReader = PHPExcel_IOFactory::createReader('Excel2007');
+            $objPHPExcel = $objReader->load('../../assets/archivos/archivoExcel.xlsx');
+            // Indicamos que se pare en la hoja uno del libro
+            $objPHPExcel->setActiveSheetIndex(1);
+            
+            //Modificamos los valores
+            
+            for ($e=0; $e <count($celda); $e++) { 
+               
+                //$objPHPExcel->getActiveSheet()->SetCellValue($celda[$e], 'Error !!');
+                
+                $objPHPExcel->getActiveSheet()->getStyle($celda[$e])->getFill() ->applyFromArray(array('type' => PHPExcel_Style_Fill::FILL_SOLID, 'startcolor' => array('rgb' => 'ff2d00') )); 
+
+            }
+            
+            //Guardamos los cambios
+            $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+            
+            $directorio = "../../assets/archivos/Archivo_salida.xlsx";
+            
+            if(file_exists($directorio)) unlink($directorio);
+            
+            $objWriter->save($directorio);
+            
+            echo json_encode($respuesta);
+            
+        }else{
+            
+            $tabla   = $this -> getValoresTabla($arrayInsert);
+           
+            $respuesta = array('error'=>0,'tabla'=>$tabla);
+            
             echo json_encode($respuesta);
             
         }
@@ -112,6 +325,140 @@ class Status
         
         
     }
+    protected function getValoresTabla($arrayInsert)
+    {   
+        
+        $trabajadores     = array();
+        $importeph        = 0; // Prestamo hipotecario
+        $importecp        = 0; // Credito personal
+        $importesh        = 0; // Seguro  hipotecario
+        $importephesp     = 0; // Prestamo hipotecario especial 
+        $importeaval      = 0; // Monto avalado
+        $numeroQuincena   = 0; // Quincena
+        $salarioCotizacion= 0; // Salario cotizacion
+        $aguinaldo        = 0; // Aguinaldo
+        $pensiones        = 0; // Pensiones Extraordinarios
+        $entidad          = 0; // De la entidad
+      
+        foreach($arrayInsert as $contenido){
+            
+            foreach($contenido as $llave => $valor){
+
+                if($llave=='CURP' && $valor!= ''){
+                    
+                   array_push($trabajadores,$valor);
+                    
+                }
+                
+                // Prestamo hipotecario
+                if($llave=='IMPORTEPH' && is_numeric($valor)){
+                    
+                    $importeph += $valor;
+                    
+                }
+                
+                // Credito personal
+                if($llave=='IMPORTECP' && is_numeric($valor)){
+                    
+                    $importecp += $valor;
+                    
+                }
+                
+                // Seguro hipotecario
+                if($llave=='IMPORTESH' && is_numeric($valor)){
+                    
+                    $importesh += $valor;
+                    
+                }
+                
+                // Prestamo hipotecario especial 
+                if($llave=='IMPORTEPHESP' && is_numeric($valor)){
+                    
+                    $importephesp += $valor;
+                    
+                }
+                
+                // Seguro del prestamo hipotecario especial
+                if($llave=='IMPORTESHESP' && is_numeric($valor)){
+                    
+                    $importeshesp += $valor;
+                    
+                }
+                
+                // Monto avalado
+                if($llave=='IMPORTEAVAL' && is_numeric($valor)){
+                    
+                    $importeaval += $valor;
+                    
+                }
+                
+                // Quincena
+                if($llave=='NUMERODEQUINCENA' && is_numeric($valor)){
+                    
+                    $numeroQuincena += $valor;
+                    
+                }
+                
+                // Salario cotizacion
+                if($llave=='SALARIOCOTIZACION' && is_numeric($valor)){
+                    
+                    $salarioCotizacion += $valor;
+                    
+                }
+                
+                // Aguinaldo
+                if($llave=='APORTACIONPENSIONESAGUINALDO' && is_numeric($valor)){
+                    
+                    $aguinaldo += $valor;
+                    
+                }
+                
+                // Pensiones Extraordinarios
+                
+                if($llave=='APORTACIONPENSIONESEXTRAORDINARIO' && is_numeric($valor)){
+                    
+                    $pensiones += $valor;
+                    
+                }
+                
+                // De la entidad
+                
+                if($llave=='APORTACIONENTIDAD' && is_numeric($valor)){
+                    
+                    $entidad += $valor;
+                    
+                }
+                    
+            }
+                
+        }
+        
+            $trabajadores = array_unique($trabajadores); //Eliminar elementos repetidos
+        
+            return array(
+                
+                        'quincena'             =>number_format($numeroQuincena,0,",","."),
+                        'trabajadores'         =>number_format(count($trabajadores),0,",","."),
+                        'salarioCotizacion'    =>number_format($salarioCotizacion,0,",","."),
+                        'prestamosPersonales'  =>number_format($importecp,0,",","."),
+                        'aguinaldo'            =>number_format($aguinaldo,0,",","."),
+                        'prestamosHipotecarios'=>number_format($importeph,0,",","."),
+                        'pensiones'            =>number_format($pensiones,0,",","."),
+                        'seguroHipotecario'    =>number_format($importesh,0,",","."),
+                        'entidad'              =>number_format($entidad,0,",","."),
+                        'hipotecarioEspecial'  =>number_format($importephesp,0,",",".")
+                        
+                        );
+
+                    /*  Variables por definir : 
+                    
+                        Ejercicio
+                        Aportaciones
+                    
+                    */
+      
+    }
+    
     protected function upload_max_filesize($size = "128M")
     {
         /* Inicializamos la variable upload_max_filesize */
@@ -230,7 +577,7 @@ class Status
                     
                 }else{
                     
-                $tabla  .= "<td>".$llave."</td>";
+                    $tabla  .= "<td>".$llave."</td>";
                     
                 }
                  

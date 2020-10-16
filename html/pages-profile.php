@@ -128,7 +128,8 @@
             <div class="container-fluid table-responsive">
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div id="visual"></div>
+               
+                <div id="visual_success"></div>
                 
                 <!-- Row -->
                 <table width="100%" class="table">
@@ -177,13 +178,71 @@
                     
                     <td  width="70%" class="table-responsive">
                 
-                        <table class="table table-striped" id="table">
+                        <table class="table"  style="display:none" id="table">
                         
+                        <tr>
                         
+                            <td><h4>Quincena</h4></td>
+                            <td id="quincena"></td>
+                            <td><h4>Ejercicio:</h4></td>
+                            <td id="ejercicio"></td>
+                        
+                        </tr>
+                        <tr>
+                        
+                            <td><h4>#Trabajadores:</h4></td>
+                            <td>&emsp;</td>
+                            <td id="trabajadores"></td>
+                            <td>&ensp;</td>
+                        
+                        </tr>
+                         <tr>
+                        
+                            <td ><h4>Total Aportaciones</h4></td>
+                            <td>&ensp;</td>
+                            <td>&ensp;</td>
+                            <td id="aportaciones"></td>
+                        
+                        </tr>
+                        
+                        <tr>
+                        
+                            <td style=" border-color: #e0273d"><h4>Salario Cotizacion</h4></td>
+                            <td style=" border-color: #e0273d" id="salario"></td>
+                            <td style=" border-color: #e0273d"><h4>Prestamos Personales</h4></td>
+                            <td style=" border-color: #e0273d" id="prestamosPersonales"></td>
                             
+                        </tr>
+                        <tr>
+                        
+                            <td><h4>Aguinaldo</h4></td>
+                            <td id="aguinaldo"></td>
+                            <td><h4>Prestamos Hipotecarios</h4></td>
+                            <td id="prestamosHipotecarios"></td>
+                        
+                        </tr>
+                        <tr>
+                        
+                            <td><h4>Pensiones Extraordinarios</h4></td>
+                            <td id="pensiones"></td>
+                            <td><h4>Seguro Hipotecario</h4></td>
+                            <td id="seguro"></td>
+                        
+                        </tr>
+                        <tr>
+                        
+                            <td><h4>De la entidad</h4></td>
+                            <td id="entidad"></td>
+                            <td><h4>Hipotecario Especial</h4></td>
+                            <td id="hipotecario"></td>
+                        
+                        </tr>
+                  
                         </table>
           
                     </td>
+                    
+                    <td> <div id="visual_errores"></div> </td>
                 
                 </tr>
             </table>
@@ -217,9 +276,9 @@
                                         </div>
                                         <div class="col-6 col-md-4">
                                             <img src="../assets/images/icon-excel.png" alt="Responsive image"
-                                                class="  rounded mx-auto d-block text-center ">
+                                                class=" imgExcel rounded mx-auto d-block text-center">
 
-                                            <strong><a class="efect-hover text-center mt-3" href="#"
+                                            <strong><a class="txtExcel text-center mt-3" href="#"
                                                     style="color: #8d97ad;">Descargar Layout</a></strong>
 
                                         </div>
