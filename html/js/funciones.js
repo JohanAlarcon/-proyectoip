@@ -74,7 +74,7 @@ $("#archivo_subir").on('change', function(e) {
                 }   
             }catch(e){
                 
-                $("#table").attr("display","none");
+                $("#table").attr("style","display:none");
                 
                 $(".imgExcel").attr("src","../assets/images/icon-excel.png");
                 $(".txtExcel").attr("style","color: #8d97ad").attr("href", "#");
